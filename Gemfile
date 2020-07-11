@@ -9,19 +9,20 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'factory_bot_rails'
 gem 'figaro'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'pry'
   gem 'awesome_print'
-  gem 'capybara'
   gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :test do
-  gem 'capybara'
   gem 'rspec-rails'
 end
 
