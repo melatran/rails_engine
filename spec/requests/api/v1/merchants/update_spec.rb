@@ -6,7 +6,7 @@ describe "Merchants API" do
     previous = Merchant.last.name
     merchant_params = {name: "GOT7 Goods"}
 
-    put "/api/v1/merchants/#{merchant.id}", params: {merchant: merchant_params}
+    patch "/api/v1/merchants/#{merchant.id}", params: {merchant: merchant_params}
 
     merchant = Merchant.find_by(id: merchant.id)
 
