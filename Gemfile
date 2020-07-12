@@ -10,6 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 gem 'rubocop', require: false
+gem 'fast_jsonapi'
 
 group :development, :test do
   gem 'awesome_print'
