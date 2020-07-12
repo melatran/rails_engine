@@ -9,6 +9,11 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantSerializer.new(merchant).serializable_hash
   end
 
+  def create
+    merchant = Merchant.create(merchant_params)
+    render json: MerchantSerializer.new(merchant).serializable_hash
+  end
+
   private
 
   def merchant_params
