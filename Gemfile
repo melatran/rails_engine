@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.3'
 
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'factory_bot_rails'
 gem 'faker'
 gem 'figaro'
 gem 'pg', '>= 0.18', '< 2.0'
