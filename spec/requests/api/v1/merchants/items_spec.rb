@@ -13,7 +13,7 @@ describe 'Merchant Index Relationship Endpoints' do
 
     json = JSON.parse(response.body, symbolize_names: true)
     expect(response).to be_successful
-    expect(json[:data].first.count).to eq(3)
-    expect(json[:data].first.count).to_not eq(4)
+    expect(json[:data].count).to eq(3)
+    expect(json[:data].count).to_not eq(4)
   end
 end
