@@ -26,28 +26,28 @@ describe "Merchants API" do
   end
 
   it "can create a new mercahnt" do
-    merchant_params = {name: "Super Junior's Greatest Collection"}
+    new_merchant = build(:merchant)
+    post '/api/v1/merchants' , params: {name: new_merchant.name}
 
-    post '/api/v1/merchants' , params:{merchant: merchant_params}
-
+    json = JSON.parse(response.body, symbolize_names: true)
     merchant = Merchant.last
 
     expect(response).to be_successful
-    expect(merchant.name).to eq(merchant_params[:name])
+    expect(json[:data][:attributes][:name]).to eq(merchant.name)
+    expect(merchant.name).to eq(new_merchant.name)
   end
 
   it "can update a merchant" do
-    merchant = create(:merchant)
-    previous = Merchant.last.name
-    merchant_params = {name: "GOT7 Goods"}
+    merchant_object = create(:merchant)
+    merchant_params = build(:merchant)
 
-    patch "/api/v1/merchants/#{merchant.id}", params: {merchant: merchant_params}
+    patch "/api/v1/merchants/#{merchant_object.id}", {params: merchant_params.attributes}
 
-    merchant = Merchant.find_by(id: merchant.id)
-
+    json = JSON.parse(response.body, symbolize_names: true)
+    
     expect(response).to be_successful
-    expect(merchant.name).to_not eq(previous)
-    expect(merchant.name).to eq("GOT7 Goods")
+    expect(json[:data][:attributes][:name]).to_not eq(merchant_object.name)
+    expect(json[:data][:attributes][:name]).to eq(merchant_params.name)
   end
 
   it "can destroy a merchant" do
