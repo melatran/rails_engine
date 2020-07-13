@@ -2,86 +2,62 @@ require 'csv'
 
 desc "Import CSV data"
   task import: :environment do
-    puts 'Resetting the database'
+    puts 'Destroying the database'
 
-    Rake::Task['db:drop'].invoke
-    Rake::Task['db:create'].invoke
-    Rake::Task['db:migrate'].invoke
+    Transaction.destroy_all
+    InvoiceItem.destroy_all
+    Invoice.destroy_all
+    Item.destroy_all
+    Merchant.destroy_all
+    Customer.destroy_all
 
-    CSV.foreach('db/data/customers.csv', headers: true) do |row|
-      Customer.create(
-        id: row[0],
-        first_name: row[1],
-        last_name: row[2],
-        created_at: row[3],
-        updated_at: row[4]
-      )
+    CSV.foreach('db/data/customers.csv', headers: true, header_converters: :symbol) do |row|
+      Customer.create(row.to_h)
     end
 
     puts 'Customers have been created'
 
-    CSV.foreach('db/data/invoice_items.csv', headers: true) do |row|
-      InvoiceItem.create(
-        id: row[0],
-        item_id: row[1],
-        invoice_id: row[2],
-        quantity: row[3],
-        unit_price: row[4].to_f / 100,
-        created_at: row[5],
-        updated_at: row[6]
-      )
-    end
-
-    puts 'Invoice Items have been created'
-
-    CSV.foreach('db/data/invoices.csv', headers: true) do |row|
-      Invoice.create(
-        id: row[0],
-        customer_id: row[1],
-        merchant_id: row[2],
-        status: row[3],
-        created_at: row[4],
-        updated_at: row[5]
-      )
-    end
-
-    puts 'Invoices have been created'
-
-    CSV.foreach('db/data/items.csv', headers: true) do |row|
-      Item.create(
-        id: row[0],
-        name: row[1],
-        description: row[2],
-        unit_price: row[3].to_f / 100,
-        merchant_id: row[4],
-        created_at: row[5],
-        updated_at: row[6]
-      )
-    end
-
-    puts 'Items have been created'
-
     CSV.foreach('db/data/merchants.csv', headers: true) do |row|
-      Merchant.create(
-        id: row[0],
-        name: row[1],
-        created_at: row[2],
-        updated_at: row[3]
-      )
+      Merchant.create(row.to_h)
     end
 
     puts 'Merchants have been created'
 
+    CSV.foreach('db/data/items.csv', headers: true, header_converters: :symbol) do |row|
+      Item.create({
+        id: row[:id],
+        name: row[:name],
+        description: row[:description],
+        unit_price: row[:unit_price].to_f/100,
+        merchant_id: row[:merchant_id],
+        created_at: row[:created_at],
+        updated_at: row[:updated_at]
+      })
+    end
+
+    puts 'Items have been created'
+
+    CSV.foreach('db/data/invoices.csv', headers: true, header_converters: :symbol) do |row|
+      Invoice.create(row.to_h)
+    end
+
+    puts 'Invoices have been created'
+
+    CSV.foreach('db/data/invoice_items.csv', headers: true, header_converters: :symbol) do |row|
+      InvoiceItem.create({
+        id: row[:id],
+        item_id: row[:item_id],
+        invoice_id: row[:invoice_id],
+        unit_price: row[:unit_price].to_f/100,
+        created_at: row[:created_at],
+        updated_at: row[:updated_at]
+        })
+    end
+
+    puts 'Invoice Items have been created'
+
     CSV.foreach('db/data/transactions.csv', headers: true) do |row|
-      Transaction.create(
-        id: row[0],
-        invoice_id: row[1],
-        credit_card_number: row[2],
-        credit_card_expiration_date: row[3],
-        result: row[4],
-        created_at: row[5],
-        updated_at: row[6]
-      )
+      Transaction.create(row.to_h)
     end
 
     puts 'Transactions have been created'
