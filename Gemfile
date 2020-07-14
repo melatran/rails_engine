@@ -11,6 +11,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 gem 'rubocop', require: false
 gem 'fast_jsonapi'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'awesome_print'
