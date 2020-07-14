@@ -4,7 +4,11 @@ This is a solo project for BE 2003 Mod 3. Rails Engine is an E-Commerce Applicat
 
 ## Endpoints
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
+|REST Endpoints                                  |
+|               :----:                           |
+| API Endpoint    | Path                         |Description
+| -----------     | ---------------------------- |-------------
+| Merchant All    | /api/v1/merchants            |
+| Merchant Solo   | /api/v1/merchants/1          |
+| Items All       | /api/v1/items                |
+| Item Solo       | /api/v1/items/1              |
