@@ -21,9 +21,12 @@ describe Merchant do
       item_3 = create(:item, merchant_id: merchant_2.id, unit_price: 25.00)
 
       invoice_1 = create(:invoice, merchant_id: merchant_1.id)
+      invoice_2 = create(:invoice, merchant_id: merchant_2.id)
 
       invoice_item_1 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_1.id, quantity: 2, unit_price: 10.00)
-      invoice_item_1 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
+      invoice_item_2 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
+      invoice_item_3 = create(:invoice_item, invoice_id: invoice_2.id, item_id: item_3.id, quantity: 1, unit_price: 25.00)
+
 
       transaction = create(:transaction, invoice_id: invoice_1.id, result: 'success')
 
