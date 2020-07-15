@@ -3,6 +3,8 @@ class Api::V1::Items::SearchController < ApplicationController
     render json: ItemSerializer.new(find_items(params).first)
   end
 
+  private
+
   def find_items(params)
     if params[:id]
       Item.where(id: params[:id])
