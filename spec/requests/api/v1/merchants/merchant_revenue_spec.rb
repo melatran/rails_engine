@@ -31,7 +31,7 @@ describe "Find Across All Merchants" do
     json = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
-    expect(json[:data].length).to eq(3)
+    expect(json[:data].length).to eq(2)
     expect(json[:data].length).to_not eq(4)
   end
 
@@ -61,7 +61,7 @@ describe "Find Across All Merchants" do
     json = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
-    expect(json[:data].length).to eq(3)
+    expect(json[:data].length).to eq(2)
     expect(json[:data][0][:id]).to eq("1")
   end
 end
