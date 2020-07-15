@@ -14,14 +14,14 @@ describe "Single Record Match Criteria" do
     expect(json[:data][:attributes][:name]).to_not eq("Supercali")
   end
 
-  scenario "User can get a list of all that match" do
-    merchant = create(:merchant, name: "Super Snax" )
-    merchant2 = create(:merchant, name: "Supercali")
-
-    get "/api/v1/merchants/find_all??name=super"
-
-    json = JSON.parse(response.body, symbolize_names: true)
-
-    expect(response).to be_successful
-  end
+  # scenario "User can get a list of all that match" do
+  #   merchant = create(:merchant, name: "Super Snax" )
+  #   merchant2 = create(:merchant, name: "Supercali")
+  #
+  #   get "/api/v1/merchants/find_all??name=super"
+  #
+  #   json = JSON.parse(response.body, symbolize_names: true)
+  #
+  #   expect(response).to be_successful
+  # end
 end
