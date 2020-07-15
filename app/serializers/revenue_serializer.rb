@@ -1,7 +1,5 @@
 class RevenueSerializer
   include FastJsonapi::ObjectSerializer
-
-  attributes :revenue do |merchant|
-    merchant.total_revenue
-  end
+  attribute :revenue
+  set_id 'nil?'
 end
