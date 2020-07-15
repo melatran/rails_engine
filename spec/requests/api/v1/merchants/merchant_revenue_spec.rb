@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe "Find Across All Merchants" do
   scenario "It can return merchants with the most revenue" do
-    merchant_1 = create(:merchant)
-    merchant_2 = create(:merchant)
-    merchant_3 = create(:merchant)
-    merchant_4 = create(:merchant)
+    merchant_1 = create(:merchant, id: 1)
+    merchant_2 = create(:merchant, id: 2)
+    merchant_3 = create(:merchant, id: 3)
+    merchant_4 = create(:merchant, id: 4)
 
     item_1 = create(:item, merchant_id: merchant_1.id, unit_price: 10.00)
     item_2 = create(:item, merchant_id: merchant_2.id, unit_price: 5.50)
@@ -27,9 +27,11 @@ describe "Find Across All Merchants" do
     transaction = create(:transaction, invoice_id: invoice_3.id, result: 'success')
 
     get '/api/v1/merchants/most_revenue?quantity=2'
+
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to be_successful
+    expect(json[:data].length).to eq(3)
+    expect(json[:data].length).to_not eq(4)
   end
-  # xscenario "It can return total revenue betwen dates" do
-  #
-  #   get '/api/v1/revenue?start=2012-03-09&end=2012-03-24'
-  # end
 end
