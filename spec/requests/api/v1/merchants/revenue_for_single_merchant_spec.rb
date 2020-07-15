@@ -13,8 +13,8 @@ describe "For a single merchant" do
     get "/api/v1/merchants/#{merchant_1.id}/revenue"
 
     json = JSON.parse(response.body, symbolize_names: true)
-
+    
     expect(response).to be_successful
-    expect(json).to eq(25.50)
+    expect(json[:data][:attributes][:revenue]).to eq(25.50)
   end
 end

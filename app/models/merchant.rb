@@ -11,8 +11,23 @@ class Merchant < ApplicationRecord
       .where(transactions: { result: 'success' })
       .joins(:invoice_items)
       .sum('invoice_items.quantity * invoice_items.unit_price')
-    #start with invoices and transactions
-    #transaction need to have result success to be paid invoice
-    #total_revnue = quantity * unit_price (only invoice item table has relationship)
+  end
+
+  def self.most_revenue(quantity = nil)
+    select('merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue')
+      .joins(invoices: [:transactions, :invoice_items])
+      .merge(Transaction.successful)
+      .group('merchants.id')
+      .order('revenue DESC')
+      .limit(quantity)
+  end
+
+  def self.most_items_sold(quantity = nil)
+    select('merchants.*, SUM(invoice_items.quantity) AS items_sold')
+      .joins(invoices: [:transactions, :invoice_items])
+      .merge(Transaction.successful)
+      .group('merchants.id')
+      .order('items_sold DESC')
+      .limit(quantity)
   end
 end
