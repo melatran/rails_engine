@@ -29,7 +29,7 @@ describe Merchant do
 
 
       transaction = create(:transaction, invoice_id: invoice_1.id, result: 'success')
-
+    
       expect(merchant_1.total_revenue).to eq(25.50)
       expect(merchant_1.total_revenue).to_not eq(40.50)
 
