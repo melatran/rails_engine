@@ -45,7 +45,7 @@ describe Merchant do
       item_2 = create(:item, merchant_id: merchant_2.id, unit_price: 5.50)
       item_3 = create(:item, merchant_id: merchant_2.id, unit_price: 25.00)
       item_4 = create(:item, merchant_id: merchant_3.id, unit_price: 15.00)
-      item_5 = create(:item, merchant_id: merchant_4.id, unit_price: 15.00)
+      create(:item, merchant_id: merchant_4.id, unit_price: 15.00)
 
       invoice_1 = create(:invoice, merchant_id: merchant_1.id)
       invoice_2 = create(:invoice, merchant_id: merchant_2.id)
