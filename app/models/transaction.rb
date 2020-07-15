@@ -4,6 +4,7 @@ class Transaction < ApplicationRecord
   validates :result, presence: true
 
   belongs_to :invoice
-
+  has_many :merchants, through: :invoice
+  
   scope :successful, -> { where(result: 'success') }
 end
