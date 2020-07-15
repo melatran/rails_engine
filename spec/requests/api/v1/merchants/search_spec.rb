@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe "Single Record Match Criteria" do
-  scenario "User can get the first name back" do
-    merchant = create(:merchant, name: "Super Snax" )
-    merchant2 = create(:merchant, name: "Supercali")
+describe "Merchant Search Results" do
+  scenario "User can get the result of the first name back" do
+    create(:merchant, name: "Super Snax" )
+    create(:merchant, name: "Supercali")
 
     get "/api/v1/merchants/find?name=super"
 
