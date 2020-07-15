@@ -23,11 +23,11 @@ describe Merchant do
       invoice_1 = create(:invoice, merchant_id: merchant_1.id)
       invoice_2 = create(:invoice, merchant_id: merchant_2.id)
 
-      invoice_item_1 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_1.id, quantity: 2, unit_price: 10.00)
-      invoice_item_2 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
-      invoice_item_3 = create(:invoice_item, invoice_id: invoice_2.id, item_id: item_3.id, quantity: 1, unit_price: 25.00)
+      create(:invoice_item, invoice_id: invoice_1.id, item_id: item_1.id, quantity: 2, unit_price: 10.00)
+      create(:invoice_item, invoice_id: invoice_1.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
+      create(:invoice_item, invoice_id: invoice_2.id, item_id: item_3.id, quantity: 1, unit_price: 25.00)
 
-      transaction = create(:transaction, invoice_id: invoice_1.id, result: 'success')
+      create(:transaction, invoice_id: invoice_1.id, result: 'success')
 
       expect(merchant_1.total_revenue).to eq(25.50)
       expect(merchant_1.total_revenue).to_not eq(40.50)
@@ -51,14 +51,14 @@ describe Merchant do
       invoice_2 = create(:invoice, merchant_id: merchant_2.id)
       invoice_3 = create(:invoice, merchant_id: merchant_3.id)
 
-      invoice_item_1 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_1.id, quantity: 2, unit_price: 10.00)
-      invoice_item_2 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
-      invoice_item_3 = create(:invoice_item, invoice_id: invoice_2.id, item_id: item_3.id, quantity: 1, unit_price: 25.00)
-      invoice_item_4 = create(:invoice_item, invoice_id: invoice_3.id, item_id: item_4.id, quantity: 3, unit_price: 15.00)
+      create(:invoice_item, invoice_id: invoice_1.id, item_id: item_1.id, quantity: 2, unit_price: 10.00)
+      create(:invoice_item, invoice_id: invoice_1.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
+      create(:invoice_item, invoice_id: invoice_2.id, item_id: item_3.id, quantity: 1, unit_price: 25.00)
+      create(:invoice_item, invoice_id: invoice_3.id, item_id: item_4.id, quantity: 3, unit_price: 15.00)
 
-      transaction = create(:transaction, invoice_id: invoice_1.id, result: 'success')
-      transaction = create(:transaction, invoice_id: invoice_2.id, result: 'success')
-      transaction = create(:transaction, invoice_id: invoice_3.id, result: 'success')
+      create(:transaction, invoice_id: invoice_1.id, result: 'success')
+      create(:transaction, invoice_id: invoice_2.id, result: 'success')
+      create(:transaction, invoice_id: invoice_3.id, result: 'success')
 
       expect(Merchant.most_revenue(3)).to eq([merchant_3, merchant_1, merchant_2])
     end
@@ -76,9 +76,9 @@ describe Merchant do
       invoice_2 = create(:invoice, merchant_id: merchant_2.id)
       invoice_3 = create(:invoice, merchant_id: merchant_3.id)
 
-      invoice_item_1 = create(:invoice_item, invoice_id: invoice_1.id, item_id: item_1.id, quantity: 5, unit_price: 10.00)
-      invoice_item_2 = create(:invoice_item, invoice_id: invoice_2.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
-      invoice_item_3 = create(:invoice_item, invoice_id: invoice_3.id, item_id: item_3.id, quantity: 3, unit_price: 25.00)
+      create(:invoice_item, invoice_id: invoice_1.id, item_id: item_1.id, quantity: 5, unit_price: 10.00)
+      create(:invoice_item, invoice_id: invoice_2.id, item_id: item_2.id, quantity: 1, unit_price: 5.50)
+      create(:invoice_item, invoice_id: invoice_3.id, item_id: item_3.id, quantity: 3, unit_price: 25.00)
 
       create(:transaction, invoice_id: invoice_1.id, result: 'success')
       create(:transaction, invoice_id: invoice_2.id, result: 'success')
