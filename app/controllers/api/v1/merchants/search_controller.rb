@@ -1,23 +1,21 @@
 class Api::V1::Merchants::SearchController < ApplicationController
-  def show
-    render json: MerchantSerializer.new(find_merchants(params).first)
+  def index
+    merchant_results = search_params(params)
+    render json: MerchantSerializer.new(merchant_results).serialized_json
   end
 
-  # def index
-  #   render json: MerchantSerializer.new(find_merchants(params))
-  # end
+  def show
+    merchant_results = search_params(params)
+    render json: MerchantSerializer.new(merchant_results.first).serialized_json
+  end
 
   private
 
-  def find_merchants(params)
-    if params[:id]
-      Merchant.where(id: params[:id])
-    elsif params[:name]
-      Merchant.where('lower(name) LIKE ?', "%#{params[:name].downcase}%")
-    elsif params[:created_at]
-      Merchant.where('created_at LIKE ?', "%#{params[:created_at]}%")
-    elsif params [:updated_at]
-      Merchant.where('updated_at LIKE ?', "%#{params[:updated_at]}%")
-    end
+  def search_params(params)
+    merchant_results = Merchant.all
+    merchant_results = merchant_results.filter_by_name(params[:name]) if params[:name].present?
+    merchant_results = merchant_results.filter_by_created_at(params[:created_at]) if params[:created_at].present?
+    merchant_results = merchant_results.filter_by_updated_at(params[:updated_at]) if params[:updated_at].present?
+    merchant_results
   end
 end

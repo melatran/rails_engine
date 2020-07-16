@@ -1,21 +1,22 @@
 class Api::V1::Items::SearchController < ApplicationController
+  def index
+    item_results = search_params(params)
+    render json: ItemSerializer.new(item_results).serialized_json
+  end
+
   def show
-    render json: ItemSerializer.new(find_items(params).first)
+    item_results = search_params(params)
+    render json: ItemSerializer.new(item_results.first).serialized_json
   end
 
   private
 
-  def find_items(params)
-    if params[:id]
-      Item.where(id: params[:id])
-    elsif params[:name]
-      Item.where('lower(name) LIKE ?', "%#{params[:name].downcase}%")
-    elsif params[:description]
-      Item.where('lower(description) LIKE ?', "%#{params[:description.downcase]}%")
-    elsif params[:created_at]
-      Item.where('created_at LIKE ?', "%#{params[:created_at]}%")
-    elsif params [:updated_at]
-      Item.where('updated_at LIKE ?', "%#{params[:updated_at]}%")
-    end
+  def search_params(params)
+    item_results = Item.all
+    item_results = item_results.filter_by_name(params[:name]) if params[:name].present?
+    item_results = item_results.filter_by_description(params[:description]) if params[:description].present?
+    item_results = item_results.filter_by_created_at(params[:created_at]) if params[:created_at].present?
+    item_results = item_results.filter_by_updated_at(params[:updated_at]) if params[:updated_at].present?
+    item_results
   end
 end
