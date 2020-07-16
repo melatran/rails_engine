@@ -4,9 +4,9 @@ This is a solo project for BE 2003 Mod 3. Rails Engine is an E-Commerce Applicat
 
 ## Endpoints
 
-| API Endpoint    | Path                         |Description
-| -----------     | ---------------------------- |-------------
-| Merchant All    | /api/v1/merchants            |Returns the data of all merchants in database
-| Merchant Solo   | /api/v1/merchants/:id        |Returns the data for a single merchant
-| Items All       | /api/v1/items                |Returns the data of all items in database
-| Item Solo       | /api/v1/items/:id            |Returns the data of a single item
+| API Endpoint       | Path                                |Description
+| ------------------ | ----------------------------------- |---------------------------------
+| Merchant All       | /api/v1/merchants                   |Returns the data of all merchants in database
+| Merchant Solo      | /api/v1/merchants/:id               |Returns the data for a single merchant
+| Items All          | /api/v1/items                       |Returns the data of all items in database
+| Item Solo          | /api/v1/items/:id                   |Returns the data of a single item
