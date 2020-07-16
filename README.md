@@ -17,8 +17,6 @@ git clone git@github.com:melatran/rails_engine.git
 
 ## JSON Response
 
-The endpoints for this API are all get responses for items, merchants, and revenue.
-
 ```
 {
   "data": {
@@ -39,10 +37,18 @@ The endpoints for this API are all get responses for items, merchants, and reven
 
 | API Endpoint       | Path                                |Description
 | ------------------ | ----------------------------------- |---------------------------------
-| Merchant All       | /api/v1/merchants                   |Returns the data of all merchants in database
-| Merchant Solo      | /api/v1/merchants/:id               |Returns the data for a single merchant
-| Items All          | /api/v1/items                       |Returns the data of all items in database
-| Item Solo          | /api/v1/items/:id                   |Returns the data of a single item
+| Merchant All       | `GET` /api/v1/merchants             |Returns the data of all merchants in database
+| Merchant Solo      | `GET` /api/v1/merchants/:id         |Returns the data for a single merchant
+| Create Merchant    | `POST` /api/v1/merchants            |Creates a new merchant
+| Update Merchant    | `PUT` /api/v1/merchants/:id         |Update an exsiting merchant
+| Update Merchant    | `PATCH` /api/v1/merchants/:id       |Update an exisitng merchant
+| Delete Merchant    | `DELETE` /api/v1/merchants/:id      |Delete an existing merchant
+| Items All          | `GET` /api/v1/items                 |Returns the data of all items in database
+| Item Solo          | `GET` /api/v1/items/:id             |Returns the data of a single item
+| Create Item        | `POST` /api/v1/items                |Creates a new item
+| Update Item        | `PUT` /api/v1/items/:id             |Update an exsiting item
+| Update Item        | `PATCH` /api/v1/items/:id           |Update an exisitng item
+| Delete Item        | `DELETE` /api/v1/items/:id          |Delete an existing item
 
 
 ## Relationship Endpoints
