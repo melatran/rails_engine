@@ -55,25 +55,25 @@ git clone git@github.com:melatran/rails_engine.git
 
 | API Endpoint       | Path                                |Description
 | ------------------ | ----------------------------------- |---------------------------------
-| Merchant Items     | /api/v1/merchants/:id/items         |Returns all the items for that one merchant
-| Items Merchant     | /api/v1/items/:id/merchant          |Returns the merchant the item belongs to
+| Merchant Items     | `GET`/api/v1/merchants/:id/items    |Returns all the items for that one merchant
+| Items Merchant     | `GET`/api/v1/items/:id/merchant     |Returns the merchant the item belongs to
 
 
 ## Find Endpoints
 
-| API Endpoint       | Path                                   |Description
-| ------------------ | -----------------------------------    |---------------------------------
-| Merchant Find      | /api/v1/merchants/find?parameters      |Returns the first data that matches the param
-| Merchant Find All  | /api/v1/merchants/find_all?parameters  |Returns the all the data that matches the param
-| Item Find          | /api/v1/items/find?parameters          |Returns the first data that matches the param
-| Item Find All      | /api/v1/items/find_all?parameters      |Returns the all the data that matches the param
+| API Endpoint       | Path                                        |Description
+| ------------------ | ---------------------------------------     |---------------------------------
+| Merchant Find      | `GET`/api/v1/merchants/find?parameters      |Returns the first data that matches the param
+| Merchant Find All  | `GET`/api/v1/merchants/find_all?parameters  |Returns the all the data that matches the param
+| Item Find          | `GET`/api/v1/items/find?parameters          |Returns the first data that matches the param
+| Item Find All      | `GET`/api/v1/items/find_all?parameters      |Returns the all the data that matches the param
 
 
 ## Business Intelligence Endpoints
 
-| API Endpoint          | Path                                        |Description
-| ------------------    | -----------------------------------         |---------------------------------
-| Merchant Most Revenue | /api/v1/merchants/most_revenue?quantity=x   |Returns the merchants with the most revenue where x = limit sent
-| Merchant Most Items   | /api/v1/merchants/most_items?quantity=x     |Returns the merchants who has sold the most items where x = limit sent
-| Revenue By Date       | /api/v1/revenue?start=x&end=x               |Returns the total revenue earned between a date range where x = date
-| Merchant Revenue      | /api/v1/merchants/:id/revenue               |Returns the revenue earned from a single merchant
+| API Endpoint          | Path                                             |Description
+| ------------------    | ---------------------------------------------    |---------------------------------
+| Merchant Most Revenue | `GET`/api/v1/merchants/most_revenue?quantity=x   |Returns the merchants with the most revenue where x = limit sent
+| Merchant Most Items   | `GET`/api/v1/merchants/most_items?quantity=x     |Returns the merchants who has sold the most items where x = limit sent
+| Revenue By Date       | `GET`/api/v1/revenue?start=x&end=x               |Returns the total revenue earned between a date range where x = date
+| Merchant Revenue      | `GET`/api/v1/merchants/:id/revenue               |Returns the revenue earned from a single merchant
