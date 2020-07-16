@@ -17,6 +17,21 @@ git clone git@github.com:melatran/rails_engine.git
 
 ## JSON Response
 
+Reponse for Merchant
+```
+{
+ "data": {
+      "id": "1",
+      "type": "merchant",
+      "attributes": {
+          "name": "Schroeder-Jerde",
+          "id": 1
+        }
+  }
+}
+```
+
+Response for item
 ```
 {
   "data": {
@@ -29,6 +44,20 @@ git clone git@github.com:melatran/rails_engine.git
           "unit_price": 136.49,
           "merchant_id": 3
       }
+    }
+}
+```
+
+Response for Revenue
+
+```
+{
+  "data": {
+      "id": "1",
+      "type": "merchant_revenue",
+      "attributes": {
+          "revenue": 528774.6400000005
+        }
     }
 }
 ```
