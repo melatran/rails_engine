@@ -1,7 +1,7 @@
 class Revenue
   attr_reader :revenue
 
-  def initialize (revenue)
+  def initialize(revenue)
     @revenue = revenue
   end
 
@@ -10,9 +10,9 @@ class Revenue
     last_date = Date.parse(end_date).end_of_day
 
     total_rev = Invoice.joins(:invoice_items, :transactions)
-      .merge(Transaction.successful)
-      .where('date(invoices.created_at) BETWEEN ? AND ?', first_date, last_date)
-      .sum('quantity * unit_price')
+                       .merge(Transaction.successful)
+                       .where('date(invoices.created_at) BETWEEN ? AND ?', first_date, last_date)
+                       .sum('quantity * unit_price')
 
     new(total_rev)
   end
