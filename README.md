@@ -15,6 +15,26 @@ git clone git@github.com:melatran/rails_engine.git
 - run `bundle exec rake import`
 - run `rails s`
 
+## JSON Response
+
+The endpoints for this API are all get responses for items, merchants, and revenue.
+
+```
+{
+  "data": {
+    "id": "67",
+    "type": "item",
+    "attributes": {
+          "id": 67,
+          "name": "Item Est Tempore",
+          "description": "Sit et eveniet est dolor soluta nihil consequatur. Voluptatem modi sapiente nam. Esse sunt cumque ea aut aut consequatur quia.",
+          "unit_price": 136.49,
+          "merchant_id": 3
+      }
+    }
+}
+```
+
 ## ReST Endpoints
 
 | API Endpoint       | Path                                |Description
